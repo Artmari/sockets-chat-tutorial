@@ -1,14 +1,47 @@
+body { margin: 0; }
+
+/* GRID LAYOUT */
 .chat-container{
+  width: 100vw;
+  height: 80vh;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: 1fr 7fr;
+
+  display: grid;
+  grid-template-areas: 
+      "side side topbar topbar topbar"
+      "side side chat chat chat"
+}
+.topbar{
+  grid-area: topbar;
+  background-color: lightslategray;
+}
+.sidebar{
+  grid-area: side;
+  background-color: lightblue;
+}
+.chat-area{
+  grid-area: chat;
+  background-color: silver;
+}
+
+/*TITLES*/
+.chat-title {
+  text-align: center;
+}
+.chat-room-title{
+  text-align: center;
+}
+
+/*MESSAGES FORM */
+.chat-message-form{
 
 }
 
-.input-container{
+.chat-message-input{
 
 }
 
-.message-input{
+.chat-message-send{
 
-}
-.message-send{
-  
 }

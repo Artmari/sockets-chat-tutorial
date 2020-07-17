@@ -7,29 +7,34 @@
     <title>Chat tutorial</title>
   </head>
   <body>
-    <div class="chat-container">
-      <h2 class="chat-title">Chat tutorial</h2>
-      <div id="messages"></div>
-      <div id="location-link"></div>
-      <form class="input-container" id="message-form">
-        <input type="text" class="message-input" placeholder="Message" />
-        <button type="submit" class="message-send">Send</button>
-      </form>
-      <button id="send-location">Location</button>
-
-      <script id="message-template" type="text/html">
-        <div>
-          <p>{{createdAt}} - {{message}}</p>
-        </div>
-      </script>
-      <script id="location-template" type="text/html">
-        <div>
-          <p>
-            <a href="{{url}}" target="_blank">My current location</a>
-          </p>
-        </div>
-      </script>
-    </div>
+    <h2 class="chat-title">Chat tutorial</h2>
+    <section class="chat-container">
+      <section class="topbar">
+        <h3 class="chat-room-title">room</h3>
+      </section>
+      <section class="chat-area">
+        <div id="messages" class="chat-messages"></div>
+        <div id="location-link" class="chat-messages_location"></div>
+        <form class="input-container" id="message-form">
+          <input type="text" class="chat-message-input" placeholder="Message" />
+          <button type="submit" class="chat-message-send">Send</button>
+        </form>
+        <button id="send-location">Location</button>
+        <script id="message-template" type="text/html">
+          <div>
+            <p>{{createdAt}} - {{message}}</p>
+          </div>
+        </script>
+        <script id="location-template" type="text/html">
+          <div>
+            <p>
+              <a href="{{url}}" target="_blank">My current location</a>
+            </p>
+          </div>
+        </script>
+      </section>
+      <section class="sidebar"></section>
+    </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js"></script>
