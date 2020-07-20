@@ -10,6 +10,9 @@ const $locations = document.querySelector("#location-link");
 const messageTemplate = document.querySelector("#message-template").innerHTML;
 const locationTemplate = document.querySelector("#location-template").innerHTML;
 
+//Options
+const {username, room} = Qs.parse(location.search, { ignoreQueryPrefix: true})
+
 function htmlToElement(html) {
   var template = document.createElement("template");
   html = html.trim(); // Never return a text node of whitespace as the result
@@ -80,3 +83,5 @@ $locationButton.addEventListener("click", () => {
     });
   });
 });
+
+socket.emit('join', {username, room})
