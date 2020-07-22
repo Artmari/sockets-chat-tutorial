@@ -18,15 +18,12 @@ const locationUrl = 'https://google.com/maps?q=,';
 
 io.on('connection', (socket) => {
   console.log('New websocket connection');
-
   // sends message to everyone exept current connection
-
   socket.on('join', ({username, room}) => {
     socket.join(room);
 
     socket.emit('message', generateMessage('Welcome'));
     socket.broadcast.to(room).emit('message', generateMessage(`${username} has joined!`));
-
     // socket.emit - sending to the client
     // socket.broadcast.emit sending to all clients except sender
     // io.emit - sending to all connected clients
@@ -56,6 +53,7 @@ io.on('connection', (socket) => {
     io.emit('message', generateMessage('A user has left'));
   }); // disconnect - built-in event
 });
+
 
 server.listen(port, () => {
   console.log(chalk.greenBright('Server is up on port' + port));
