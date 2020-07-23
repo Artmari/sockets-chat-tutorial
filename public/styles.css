@@ -1,47 +1,62 @@
-body { margin: 0; }
+body {
+  margin: 0;
+}
+
+/* colors */
+/* sidebar-dark-gray: #0A0C0E
+  buttons-blue: #0032FB
+  accent-yellow: #FD8802
+  medium-gray: #AFB8BF
+  ligth-gray: #E8EDF0
+*/
 
 /* GRID LAYOUT */
-.chat-container{
+.chat-container {
   width: 100vw;
-  height: 80vh;
-  grid-template-columns: repeat(5,1fr);
-  grid-template-rows: 1fr 7fr;
+  height: 100vh;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr 10fr 1fr;
 
   display: grid;
-  grid-template-areas: 
-      "side side topbar topbar topbar"
-      "side side chat chat chat"
+  grid-template-areas:
+    'side side topbar topbar topbar topbar topbar'
+    'side side chat chat chat chat chat'
+    'side side input input input input input';
 }
-.topbar{
+.topbar {
   grid-area: topbar;
-  background-color: lightslategray;
+  background-color: white;
+  align-self: center;
+  justify-self: center;
 }
-.sidebar{
+.sidebar {
   grid-area: side;
-  background-color: lightblue;
+  background-color: #0a0c0e;
 }
-.chat-area{
+.chat-area {
   grid-area: chat;
+  background-color: #e8edf0;
+}
+.chat-messages-area {
+  margin: 20px 0px 0 50px;
+}
+
+.chat-input-area {
+  grid-area: input;
   background-color: silver;
+  display: flex;
 }
 
 /*TITLES*/
 .chat-title {
   text-align: center;
 }
-.chat-room-title{
+.chat-room-title {
   text-align: center;
 }
 
 /*MESSAGES FORM */
-.chat-message-form{
-
-}
-
-.chat-message-input{
-
-}
-
-.chat-message-send{
-
+.input-container {
+  align-self: center;
+  margin: 0 0 0 50px;
 }
