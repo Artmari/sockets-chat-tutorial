@@ -29,7 +29,6 @@ socket.on("message", (message) => {
     message: text,
     createdAt: moment(createdAt).format("HH:mm"),
   });
-  console.log(message);
   const htmlElement = htmlToElement(html);
   $messages.insertAdjacentElement("beforeend", htmlElement);
 });
@@ -64,8 +63,6 @@ messageForm.addEventListener("submit", (e) => {
     if (error) {
       return console.log(error);
     }
-
-    console.log("Message delivered");
   });
 });
 
@@ -85,7 +82,6 @@ $locationButton.addEventListener("click", () => {
 
     socket.emit("sendLocation", data, (message) => {
       $locationButton.removeAttribute("disabled");
-      console.log(message);
     });
   });
 });

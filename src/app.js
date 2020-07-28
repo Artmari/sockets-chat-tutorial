@@ -23,7 +23,7 @@ const io = socketio(server);
 const publicDirectoryPath = path.join(__dirname, "../public");
 app.use(express.static(publicDirectoryPath));
 
-const locationUrl = "https://google.com/maps?q=,";
+const locationUrl = "https://google.com/maps?q=";
 
 io.on("connection", (socket) => {
   console.log("New websocket connection");
@@ -48,8 +48,6 @@ io.on("connection", (socket) => {
   });
   socket.on("sendMessage", (message, callback) => {
     const user = getUser(socket.id);
-    console.log(user);
-    
     const filter = new Filter();
 
     if (filter.isProfane(message)) {
@@ -66,7 +64,7 @@ io.on("connection", (socket) => {
       "locationMessage",
       generateLocationMessage(
         user.username,
-        `https://google.com/maps?q=${data.lat},${data.long}`
+        `${locationUrl}${data.lat},${data.long}`
       )
     );
     callback("Delivered");
@@ -75,7 +73,10 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
     if (user) {
-      io.emit("message", generateMessage(user.username, `${user.username} has left!`));
+      io.emit(
+        "message",
+        generateMessage(user.username, `${user.username} has left!`)
+      );
     }
   }); // disconnect - built-in event
 });

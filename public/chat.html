@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
     <title>Chat tutorial</title>
   </head>
   <body>
     <section class="chat-container">
       <section class="topbar">
-        <h3 class="chat-room-title">room</h3>
+        <h3 class="chat-room-title">Room</h3>
       </section>
       <section class="chat-area">
         <div class="chat-messages-area">
@@ -20,24 +24,30 @@
       <section class="chat-input-area">
         <form class="input-container" id="message-form">
           <input type="text" class="chat-message-input" placeholder="Message" />
-          <button type="submit" class="chat-message-send">Send</button>
-          <button id="send-location">Location</button>
+          <div class="input-btn-wrapper">
+            <button type="submit" class="chat-message-send">Send</button>
+            <button id="send-location" class="chat-message-send">
+              Location
+            </button>
+          </div>
         </form>
       </section>
       <script id="message-template" type="text/html">
-        <div>
-          <span class="chat-message-data">{{username}}</span>
-          <span class="chat-message-data">{{createdAt}}</span>
-          <p class="chat-message-text">{{message}}</p>
+        <div class="message-container">
+          <div class="message-text">{{message}}</div>
+          <div class="message-wrapper">
+            <span class="message-data">{{username}}</span>
+            <span class="message-data">{{createdAt}}</span>
+          </div>
         </div>
       </script>
       <script id="location-template" type="text/html">
-        <div>
-          <p>
-            <span class="chat-message-data">{{username}}</span>
-            <span class="chat-message-data">{{createdAt}}</span>
-            <a href="{{url}}" target="_blank">My current location</a>
-          </p>
+        <div class="location-container">
+          <a href="{{url}}" target="_blank" class="location-link">My current location</a>
+          <div class="location-wrapper">
+            <span class="message-data">{{username}}</span>
+            <span class="message-data">{{createdAt}}</span>
+          </div>
         </div>
       </script>
       <section class="sidebar"></section>
