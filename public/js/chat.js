@@ -23,19 +23,23 @@ function htmlToElement(html) {
 }
 
 socket.on("message", (message) => {
-  console.log(message);
+  const { username, text, createdAt } = message;
   const html = Mustache.render(messageTemplate, {
-    message: message.text,
-    createdAt: moment(message.createdAt).format("HH:mm"),
+    username: username,
+    message: text,
+    createdAt: moment(createdAt).format("HH:mm"),
   });
+  console.log(message);
   const htmlElement = htmlToElement(html);
   $messages.insertAdjacentElement("beforeend", htmlElement);
 });
 
-socket.on("locationMessage", (url) => {
-  console.log(url);
+socket.on("locationMessage", (message) => {
+  const { username, url, createdAt } = message;
   const html = Mustache.render(locationTemplate, {
+    username,
     url,
+    createdAt: moment(createdAt).format("HH:mm"),
   });
   const htmlElement = htmlToElement(html);
   $locations.insertAdjacentElement("beforeend", htmlElement);

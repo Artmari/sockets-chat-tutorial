@@ -26,12 +26,16 @@
       </section>
       <script id="message-template" type="text/html">
         <div>
-          <p>{{createdAt}} - {{message}}</p>
+          <span class="chat-message-data">{{username}}</span>
+          <span class="chat-message-data">{{createdAt}}</span>
+          <p class="chat-message-text">{{message}}</p>
         </div>
       </script>
       <script id="location-template" type="text/html">
         <div>
           <p>
+            <span class="chat-message-data">{{username}}</span>
+            <span class="chat-message-data">{{createdAt}}</span>
             <a href="{{url}}" target="_blank">My current location</a>
           </p>
         </div>
