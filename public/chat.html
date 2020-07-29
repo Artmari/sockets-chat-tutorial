@@ -13,7 +13,7 @@
   <body>
     <section class="chat-container">
       <section class="topbar">
-        <h3 class="chat-room-title">Room</h3>
+        <h2 class="chat-room-title">Chat App</h2>
       </section>
       <section class="chat-area">
         <div class="chat-messages-area">
@@ -23,7 +23,12 @@
       </section>
       <section class="chat-input-area">
         <form class="input-container" id="message-form">
-          <input type="text" class="chat-message-input" placeholder="Message" />
+          <input
+            type="text"
+            class="chat-message-input"
+            placeholder="Message"
+            required
+          />
           <div class="input-btn-wrapper">
             <button type="submit" class="chat-message-send">Send</button>
             <button id="send-location" class="chat-message-send">
@@ -32,6 +37,7 @@
           </div>
         </form>
       </section>
+      <section id="sidebar" class="sidebar"></section>
       <script id="message-template" type="text/html">
         <div class="message-container">
           <div class="message-text">{{message}}</div>
@@ -50,7 +56,16 @@
           </div>
         </div>
       </script>
-      <section class="sidebar"></section>
+      <script id="sidebar-template" type="text/html">
+        <h2 class="sidebar-room-title">{{room}}</h2>
+        <h4 class="sidebar-list-title">Users</h4>
+        <ul class="sidebar-users">
+          {{#users}}
+            <li>{{username}}</li>
+          {{/users}}
+        </ul>
+      </script>
+      
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>

@@ -14,6 +14,7 @@ const {
   getUser,
   getUsersInRoom,
 } = require("./utils/users");
+const users = require("./utils/users");
 
 const port = process.env.PORT || 3001;
 const app = express();
@@ -45,6 +46,11 @@ io.on("connection", (socket) => {
         "message",
         generateMessage(user.username, `${user.username} has joined!`)
       );
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
+    callback();
   });
   socket.on("sendMessage", (message, callback) => {
     const user = getUser(socket.id);
@@ -73,10 +79,14 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
     if (user) {
-      io.emit(
+      io.to(user.room).emit(
         "message",
         generateMessage(user.username, `${user.username} has left!`)
       );
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room)
+      })
     }
   }); // disconnect - built-in event
 });

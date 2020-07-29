@@ -9,6 +9,7 @@ const $locations = document.querySelector("#location-link");
 //templates
 const messageTemplate = document.querySelector("#message-template").innerHTML;
 const locationTemplate = document.querySelector("#location-template").innerHTML;
+const sidebarTemplate = document.querySelector("#sidebar-template").innerHTML;
 
 //Options
 const { username, room } = Qs.parse(location.search, {
@@ -84,6 +85,14 @@ $locationButton.addEventListener("click", () => {
       $locationButton.removeAttribute("disabled");
     });
   });
+});
+
+socket.on("roomData", ({ room, users }) => {
+  const html = Mustache.render(sidebarTemplate, {
+    room,
+    users,
+  });
+  document.querySelector("#sidebar").innerHTML = html;
 });
 
 socket.emit("join", { username, room }, (error) => {
